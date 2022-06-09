@@ -1,0 +1,23 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  previewFeatures = ["referentialIntegrity"]
+}
+
+datasource db {
+  provider = "sqlite"
+  url = "file:./dev.db"
+  referentialIntegrity = "prisma"
+}
+
+model Urls {
+  id           Int         @default(autoincrement()) @id @unique
+  created_at   DateTime    @default(now())
+  origin_url   String      
+  short_url    String      
+
+  @@index(short_url)
+
+}
